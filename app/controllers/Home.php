@@ -7,6 +7,7 @@ class Home extends Controller
 
     public $model_breed;
 
+
     public function __construct()
     {
         $this->model_home = $this->model('HomeModel');
@@ -42,11 +43,37 @@ class Home extends Controller
     public function post_request()
     {
         $request = new Request();
-        $data = $request->getField();
-        $this->model_home->add($data);
 
-        $response = new Response();
-        $response->redirect('home');
+        //set rules 
+        $request->rules(['name' => 'required|min:2',]);
+
+        //set message
+        $request->messages(["name.required" => "name not required", 'name.min' => 'name min 2']);
+
+
+        $validate = $request->validate();
+
+        // echo '<pre>';
+        // print_r($request->errors);
+        // echo '</pre>';
+
+        if (!$validate) {
+            $this->data['sub_content']['error'] = $request->error();
+        }
+
+        // $data = $request->getField();
+        // $this->model_home->add($data);
+
+        // $response = new Response();
+        // $response->redirect('home');
+
+        // $this->data['sub_content']['breeds'] = $this->model_breed->get();
+        // $this->data['sub_content']['title'] = 'danh sach san pham';
+        $this->data['content'] = 'home/formPet';
+        // echo '<pre>';
+        // print_r($this->data);
+        // echo '</pre>';
+        $this->render('layouts/client_layout', $this->data);
     }
 
     public function edit_pet($id)

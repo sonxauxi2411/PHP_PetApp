@@ -1,9 +1,13 @@
 <div class='container'>
     <div class='d-flex justify-content-center'>
 
+<?php 
+         echo '<pre>';
+        print_r($data['error']);
+        echo '</pre>';
+?>
 
-
-        <form class='d-flex flex-column' style='gap:10px;' method='post' action="<?php echo isset($data['pet_id']) ? 'post_update_pet/' . $data['id'] : "home/post_request";  ?>">
+        <form class='d-flex flex-column' style='gap:10px;' method='post' action="<?php echo isset($data['pet_id']) ? 'post_update_pet/' . $data['id'] : "post_request";  ?>">
             <div class='d-flex' style='gap:10px;'>
                 <label for="pet_id" class="form-label">Pet ID</label>
                 <input <?php echo isset($data['pet_id']) ? 'disabled' : ""; ?> value="<?php echo isset($data['pet_id']) ? $data['pet_id'] : ""; ?>" class="form-control" type="text" name="pet_id" id="id" placeholder="input ID">

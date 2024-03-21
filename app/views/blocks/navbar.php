@@ -1,5 +1,5 @@
-<?php 
-     $url = (!empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '/';
+<?php
+$url = (!empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : '/';
 ?>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -16,7 +16,7 @@
                     <a class="nav-link <?php echo $url == '/' ? 'active' : '' ?>" aria-current="page" href=<?php echo _WEB_PATH_; ?>> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $url == '/tao-pet' ? 'active' : '' ?>" href=<?php echo _WEB_PATH_ . '/tao-pet' ?>>Pet</a>
+                    <a class="nav-link <?php echo $url == '/home/create_pet' ? 'active' : '' ?>" href=<?php echo _WEB_PATH_ . '/home/create_pet' ?>>Pet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo $url == '/breed' ? 'active' : '' ?> " href=<?php echo _WEB_PATH_ . '/breed' ?>>Breed</a>
