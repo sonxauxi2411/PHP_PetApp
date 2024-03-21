@@ -7,7 +7,7 @@
                 <th scope="col">Age</th>
                 <th scope="col">Weight</th>
                 <th scope="col">Length</th>
-                <th scope="col">Type</th>
+                <th scope="col">Breed</th>
                 <th scope="col">action</th>
             </tr>
         </thead>

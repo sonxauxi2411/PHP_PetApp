@@ -29,14 +29,15 @@
                 <input value="<?php echo isset($data['length']) ? $data['length'] : ""; ?>" class="form-control" type="number" name="length" id="length" placeholder="input length">
             </div>
             <div class='d-flex'>
-                <label class="form-label"> Type</label>
+                <label class="form-label"> Breed</label>
                 <select class="form-select" aria-label="Default select example" name='type_id'>
-
+                   
                     <?php foreach ($breeds as $breed) : ?>
                         <option value=<?php echo $breed['id'] ?>>
-                            <?php echo $breed['breed'] ?>
+                            <?php echo $breed['breed'].' - '.$breed['type'] ?>
                         </option>
                     <?php endforeach; ?>
+
                 </select>
 
             </div>
