@@ -3,7 +3,7 @@
 
 <?php 
          echo '<pre>';
-        print_r($data['error']);
+        print_r($error);
         echo '</pre>';
 ?>
 
