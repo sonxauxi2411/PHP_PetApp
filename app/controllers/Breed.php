@@ -26,9 +26,9 @@ class Breed extends Controller
     {
         $request = new Request();
         if($request->isPost()){
-            $request->rules(['breed' => 'required|min:2',]);
+            $request->rules(['breed' => 'required|min:2|unique:breed:breed',]); //unique:tableName:fieldName
 
-            $request->messages(["breed.required" => "name not required", 'breed.min' => 'name min 2']);
+            $request->messages(["breed.required" => "name not required", 'breed.min' => 'name min 2', 'breed.unique'=>'breed unique']);
     
             $validate = $request->validate();
     

@@ -2,7 +2,11 @@
 class Request
 {
     private $__rules = [], $__messages = [];
-    public $errors = [];
+    public $errors = [], $db;
+    function __construct()
+    {
+        $this->db = new Database();
+    }
     public function getMethod()
     {
 
@@ -92,7 +96,29 @@ class Request
                         if (strlen(trim($dataFields[$fieldName])) < $ruleValue) {
                             $this->setError($fieldName, $ruleName);
                             $checkValidation = false;
+                        }
+                    }
+                    if ($ruleName == 'unique') {
 
+
+                        $tableName = null;
+                        $fieldCheck = null;
+                        if (!empty($rulesArr[1])) {
+                            $tableName = $rulesArr[1];
+                        }
+                        if (!empty($rulesArr[2])) {
+                            $fieldCheck = $rulesArr[2];
+                        }
+          
+                        if (!empty($tableName) && !empty($fieldCheck)) {
+      
+                            $checkExists = $this->db->query("SELECT $fieldCheck FROM $tableName WHERE $fieldCheck = '$dataFields[$fieldName]'  ")->rowCount();
+                            if(!empty($checkExists)){
+                                $this->setError($fieldName, $ruleName);
+                                $checkValidation = false;
+                            }
+
+                            // echo $fieldCheck;
                         }
                     }
                 }
@@ -105,15 +131,15 @@ class Request
     }
 
     //get errors
-    public function error($fieldName='')
+    public function error($fieldName = '')
     {
-        if(!empty($this->errors)) {
-            if(empty($fieldName)){
-               $errorsArr = [] ;
-                foreach($this ->errors as $key=>$error){
+        if (!empty($this->errors)) {
+            if (empty($fieldName)) {
+                $errorsArr = [];
+                foreach ($this->errors as $key => $error) {
                     $errorsArr[$key] = reset($error);
-               }
-               return $errorsArr ;
+                }
+                return $errorsArr;
             }
             return reset($this->errors[$fieldName]);
         }
